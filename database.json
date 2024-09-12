@@ -1,0 +1,487 @@
+{
+  "roles": [
+    {
+      "id": "integer",
+      "name": "string",
+      "users": [
+        {
+          "id": "integer",
+          "name": "string",
+          "email": "string",
+          "role_id": "integer",
+          "created_at": "timestamp",
+          "updated_at": "timestamp"
+        },
+        {
+            "relatiion": [
+                {
+                    "roles": "HasOne",
+                    "lectures": "HasOne",
+                    "students": "HasOne"
+                }
+            ]
+        }
+      ]
+    },
+    {
+        "relatiion": [
+            {
+                "users": "HasMany"
+            }
+        ]
+    }
+  ],
+
+  "users": [
+    {
+      "id": "integer",
+      "name": "string",
+      "email": "string",
+      "role_id": "integer",
+      "created_at": "timestamp",
+      "updated_at": "timestamp",
+      "students": [
+        {
+          "id": "integer",
+          "user_id": "integer",
+          "nim": "string",
+          "study_program_id": "integer",
+          "nik": "string",
+          "gender": "string",
+          "address": "string",
+          "phone": "string"
+        },
+        {
+            "relatiion": [
+                {
+                    "users": "BelongsTo",
+                    "study_program": "BelongsTo",
+                    "schedule_students": "HasMany"
+                }
+            ]
+        }
+      ],
+      "lectures": [
+        {
+            "id": "integer",
+            "user_id": "integer",
+            "nip": "string",
+            "study_program_id": "integer",
+            "gender": "string",
+            "address": "string",
+            "phone": "string"
+        },
+        {
+            "relatiion": [
+                {
+                    "users": "BelongsTo",
+                    "study_program": "BelongsTo",
+                    "schedules": "HasMany"
+                }
+            ]
+        }
+      ]
+    },
+    {
+        "relatiion": [
+            {
+                "roles": "HasOne",
+                "lectures": "HasOne",
+                "students": "HasOne"
+            }
+        ]
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "integer",
+      "name": "string",
+      "code": "string",
+      "departments": [
+        {
+          "id": "integer",
+          "name": "string",
+          "code": "string",
+          "faculty_id": "integer",
+          "study_programs": [
+            {
+              "id": "integer",
+              "name": "string",
+              "code": "string",
+              "department_id": "integer"
+            },
+            {
+              "relatiion": [
+                {
+                  "departments": "BelongsTo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "relatiion": [
+            {
+              "faculties": "HasMany"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "relatiion": [
+        {
+          "departments": "HasMany"
+        }
+      ]
+    }
+  ],
+
+  "lecturers": [
+    {
+        "id": "integer",
+        "user_id": "integer",
+        "nip": "string",
+        "study_program_id": "integer",
+        "gender": "string",
+        "address": "string",
+        "phone": "string",
+        "schedules": [
+            {
+                "id": "integer",
+                "lecture_id": "integer",
+                "course_id": "integer",
+                "day": "string",
+                "start_time": "time",
+                "end_time": "time",
+                "date": "dateTime",
+                "schedule_students": [
+                    {
+                        "id": "integer",
+                        "schedule_id": "integer",
+                        "student_id": "integer",
+                        "category_id": "integer",
+                        "created_at": "timestamp",
+                        "updated_at": "timestamp"
+                    },
+                    {
+                        "relatiion": [
+                            {
+                                "schedules": "BelongsTo",
+                                "students": "BelongsTo"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "relatiion": [
+                    {
+                        "lectures": "BelongsTo",
+                        "schedule_students": "hasMany"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "relatiion": [
+            {
+                "users": "BelongsTo",
+                "study_program": "BelongsTo",
+                "schedules": "HasMany"
+            }
+        ]
+    }
+  ],
+
+  "students": [
+    {
+      "id": "integer",
+      "user_id": "integer",
+      "nim": "string",
+      "study_program_id": "integer",
+      "nik": "string",
+      "gender": "string",
+      "address": "string",
+      "phone": "string",
+      "schedule_students": [
+        {
+            "id": "integer",
+            "schedule_id": "integer",
+            "student_id": "integer",
+            "learning_category_id": "integer",
+            "created_at": "timestamp",
+            "updated_at": "timestamp"
+        },
+        {
+            "relatiion": [
+                {
+                    "students": "BelongsTo",
+                    "schedules": "BelongsTo"
+                }
+            ]
+        }
+    ]
+    },
+    {
+        "relatiion": [
+            {
+                "users": "BelongsTo",
+                "study_program": "BelongsTo",
+                "schedule_students": "HasMany"
+            }
+        ]
+    }
+  ],
+
+  "courses": [
+    {
+      "id": "integer",
+      "user_id": "integer",
+      "name": "string",
+      "sks": "integer",
+      "code": "string",
+      "status": "string",
+      "description": "string",
+      "created_at": "timestamp",
+      "updated_at": "timestamp",
+      "course_details": [
+        {
+          "id": "integer",
+          "study_program_id": "integer",
+          "course_id": "integer",
+          "lecture_id": "integer",
+          "user_id": "integer",
+          "code": "string",
+          "created_at": "timestamp",
+          "updated_at": "timestamp"
+        },
+        {
+          "relatiion": [
+            {
+              "courses": "belongsTo",
+              "exams": "hasMany",
+              "modules": "hasMany",
+              "study_program": "BelongsTo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "relatiion": [
+        {
+          "course_details": "HasMany",
+          "users": "BelongsTo"
+        }
+      ]
+    }
+  ],
+
+  "learning_categories": [
+    {
+      "id": "integer",
+      "name": "string",
+      "description": "string",
+      "created_at": "timestamp",
+      "updated_at": "timestamp"
+    }
+  ],
+
+  "questionnaires": [
+    {
+      "id": "integer",
+      "course_detail_id": "integer",
+      "description": "LongText",
+      "status": "string",
+      "created_at": "timestamp",
+      "updated_at": "timestamp",
+      "learning_category_questionnaires": [
+        {
+          "id": "integer",
+          "learning_category_id": "integer",
+          "questionnaire_id": "integer",
+          "description": "LongText",
+          "status": "string",
+          "score": "integer",
+          "created_at": "timestamp",
+          "updated_at": "timestamp"
+        },
+        {
+          "relatiion": [
+            {
+              "learning_categories": "BelongsTo",
+              "questionnaires": "BelongsTo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "relatiion": [
+        {
+          "course_details": "BelongsTo",
+          "learning_category_questionnaires": "HasMany"
+        }
+      ]
+    }
+  ],
+
+  "course_details": [
+    {
+      "id": "integer",
+      "course_id": "integer",
+      "lecture_id": "integer",
+      "study_program_id": "integer",
+      "user_id": "integer",
+      "code": "string",
+      "created_at": "timestamp",
+      "updated_at": "timestamp",
+      "schedules": [
+        {
+            "id": "integer",
+            "lecture_id": "integer",
+            "course_detail_id": "integer",
+            "day": "string",
+            "start_time": "time",
+            "end_time": "time",
+            "date": "dateTime",
+            "schedule_students": [
+                {
+                    "id": "integer",
+                    "schedule_id": "integer",
+                    "learning_category_id": "integer",
+                    "student_id": "integer",
+                    "created_at": "timestamp",
+                    "updated_at": "timestamp"
+                },
+                {
+                    "relatiion": [
+                        {
+                            "schedules": "BelongsTo",
+                            "students": "BelongsTo"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+          "relatiion": [
+            {
+                "lectures": "BelongsTo",
+                "course_details": "belongsTo",
+                "schedule_students": "hasMany",
+                "study_program": "BelongsTo"
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": "integer",
+          "course_detail_id": "integer",
+          "learning_categorie_id": "integer",
+          "name": "string",
+          "pertemuan": "integer",
+          "description": "LongText",
+          "created_at": "timestamp",
+          "updated_at": "timestamp",
+          "lessons": [
+            {
+              "id": "integer",
+              "module_id": "integer",
+              "name": "string",
+              "description": "LongText",
+              "created_at": "timestamp",
+              "updated_at": "timestamp"
+            },
+            {
+              "relatiion": [
+                {
+                  "modules": "belongsTo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "relatiion": [
+            {
+              "course_details": "belongsTo",
+              "learning_categories": "belongsTo",
+              "lessons": "hasMany"
+            }
+          ]
+        }
+      ],
+      "exam": [
+        {
+          "id": "integer",
+          "course_detail_id": "integer",
+          "learning_category_id": "integer",
+          "name": "string",
+          "description": "LongText",
+          "created_at": "timestamp",
+          "updated_at": "timestamp" 
+        }
+      ]
+    },
+    {
+      "relatiion": [
+        {
+          "courses": "belongsTo",
+          "exams": "hasMany",
+          "modules": "hasMany"
+        }
+      ]
+    }
+  ],
+
+  "exam": [
+    {
+      "id": "integer",
+      "course_detail_id": "integer",
+      "learning_category_id": "integer",
+      "name": "string",
+      "description": "LongText",
+      "created_at": "timestamp",
+      "updated_at": "timestamp",
+      "questions": [
+        {
+          "id": "integer",
+          "exam_id": "integer",
+          "question": "string",
+          "created_at": "timestamp",
+          "updated_at": "timestamp",
+          "answers": [
+            {
+              "id": "integer",
+              "question_id": "integer",
+              "answer": "string",
+              "correct": "boolean",
+              "created_at": "timestamp",
+              "updated_at": "timestamp"
+            },
+            {
+              "relatiion": [
+                {
+                  "questions": "belongsTo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "relatiion": [
+            {
+              "answers": "hasMany",
+              "exams": "belongsTo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
