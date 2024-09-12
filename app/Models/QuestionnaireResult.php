@@ -26,6 +26,6 @@ class QuestionnaireResult extends Model
 
     public function questionnaireResultDetails()
     {
-        return $this->hasMany(QuestionnaireResultDetail::class);
+        return $this->hasMany(QuestionnaireResultDetail::class, 'result_id');
     }
 }

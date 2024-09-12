@@ -35,6 +35,7 @@ class LandingController extends Controller
 
     public function result(QuestionnaireResult $questionnaireResult)
     {
+        $questionnaireResult->load('questionnaireResultDetails.questionnairy.learningCategoryQuestionnairies');
         return view('pages.frontend.questionnaires.result', compact('questionnaireResult'));
     }
 }

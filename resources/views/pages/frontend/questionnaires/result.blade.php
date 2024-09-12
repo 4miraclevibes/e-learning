@@ -45,7 +45,7 @@
             <p><strong>Email:</strong> {{ $questionnaireResult->user->email }}</p>
         </div>
 
-        @foreach ($questionnaireResult->questionnaireResultDetails as $index => $detail)
+        @foreach ($questionnaireResult->questionnaireResultDetails as $detail)
             <div class="mb-4">
                 <p class="mb-3">
                     <span class="question-number">Pertanyaan {{ $loop->iteration }}:</span>

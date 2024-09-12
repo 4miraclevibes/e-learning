@@ -23,6 +23,6 @@ class QuestionnaireResultDetail extends Model
     }
     public function questionnairy()
     {
-        return $this->belongsTo(Questionnairy::class);
+        return $this->belongsTo(Questionnairy::class, 'questionnairy_id');
     }
 }
