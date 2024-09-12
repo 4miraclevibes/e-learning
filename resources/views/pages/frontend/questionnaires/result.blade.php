@@ -52,7 +52,7 @@
                     {{ $detail->questionnairy->description }}
                 </p>
                 @foreach ($detail->questionnairy->learningCategoryQuestionnairies as $categoryQuestionnaire)
-                    <button type="button" class="btn answer-btn {{ $detail->learningCategoryQuestionnairy->id == $categoryQuestionnaire->id ? 'selected' : '' }}" disabled>
+                    <button type="button" class="btn answer-btn {{ $detail->category_questionnairy_id == $categoryQuestionnaire->id ? 'selected' : '' }}" disabled>
                         {{ $categoryQuestionnaire->description }}
                     </button>
                 @endforeach
