@@ -6,7 +6,7 @@ use App\Models\CourseDetail;
 use App\Models\QuestionnaireResult;
 use App\Models\QuestionnaireResultDetail;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class LandingController extends Controller
 {
     public function questionnaire(CourseDetail $courseDetail)
@@ -17,16 +17,16 @@ class LandingController extends Controller
     public function store(CourseDetail $courseDetail, Request $request)
     {
         $questionnaireResult = QuestionnaireResult::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => Auth::user()->id,
             'course_detail_id' => $courseDetail->id,
         ]);
 
         foreach ($request->input('answers') as $questionnaireId => $answerJson) {
             $answer = json_decode($answerJson, true);
             QuestionnaireResultDetail::create([
-                'questionnaire_result_id' => $questionnaireResult->id,
+                'result_id' => $questionnaireResult->id,
                 'questionnairy_id' => $answer['questionnaire_id'],
-                'learning_category_questionnairy_id' => $answer['category_questionnaire_id'],
+                'category_questionnairy_id' => $answer['category_questionnaire_id'],
             ]);
         }
 
