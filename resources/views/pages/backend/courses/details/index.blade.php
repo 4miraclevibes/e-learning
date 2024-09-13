@@ -35,6 +35,7 @@
               <a href="{{ route('courses.details.edit', $courseDetail->id) }}" class="btn btn-warning btn-sm">Edit</a>
               <a href="{{ route('courses.details.questionnaires.index', $courseDetail->id) }}" class="btn btn-info btn-sm">Kuesioner</a>
               <a href="{{ route('questionnaire', $courseDetail->id) }}" target="_blank" class="btn btn-primary btn-sm">Ambil Kuis</a>
+              <a href="{{ route('courses.details.modules.index', $courseDetail->id) }}" class="btn btn-secondary btn-sm">Modul</a>
               <a href="{{ route('courses.details.result', $courseDetail->id) }}" class="btn btn-success btn-sm">Hasil</a>
               <form action="{{ route('courses.details.destroy', $courseDetail->id) }}" method="POST" style="display:inline-block;">
                 @csrf

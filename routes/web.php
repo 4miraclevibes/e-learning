@@ -8,6 +8,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LearningCategoryController;
 use App\Http\Controllers\LearningCategoryQuestionnairyController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionnairyController;
 use App\Http\Controllers\ScheduleController;
@@ -89,6 +90,13 @@ Route::middleware('auth')->group(function () {
     Route::put('courses/details/{courseDetail}', [CourseDetailController::class, 'update'])->name('courses.details.update');
     Route::delete('courses/details/{courseDetail}', [CourseDetailController::class, 'destroy'])->name('courses.details.destroy');
     Route::get('courses/details/{courseDetail}/result', [CourseDetailController::class, 'result'])->name('courses.details.result');
+    //Modules
+    Route::get('courses/details/{courseDetail}/modules', [ModuleController::class, 'index'])->name('courses.details.modules.index');
+    Route::get('courses/details/{courseDetail}/modules/create', [ModuleController::class, 'create'])->name('courses.details.modules.create');
+    Route::post('courses/details/{courseDetail}/modules', [ModuleController::class, 'store'])->name('courses.details.modules.store');
+    Route::get('courses/details/modules/{module}/edit', [ModuleController::class, 'edit'])->name('courses.details.modules.edit');
+    Route::put('courses/details/modules/{module}', [ModuleController::class, 'update'])->name('courses.details.modules.update');
+    Route::delete('courses/details/modules/{module}', [ModuleController::class, 'destroy'])->name('courses.details.modules.destroy');   
     //Schedules
     Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules.index');
     Route::get('schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
