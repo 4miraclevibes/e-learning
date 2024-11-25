@@ -27,10 +27,11 @@ class DatabaseSeeder extends Seeder
             FacultySeeder::class,
             DepartmentSeeder::class,
             StudyProgramSeeder::class,
-            UserSeeder::class,
-            StudentSeeder::class,
-            LecturerSeeder::class,
             LearningCategorySeeder::class,
+            UserSeeder::class,
+            LecturerSeeder::class,
+            StudentSeeder::class,
+            CourseSeeder::class,
         ]);
     }
 
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
     {
         // Mengambil semua file dalam storage
         $files = Storage::allFiles();
-        
+
         // Menghapus semua file
         foreach ($files as $file) {
             Storage::delete($file);

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('questionnairies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_detail_id')->constrained('course_details');
             $table->string('name');
             $table->longText('description');
             $table->string('status')->default('active');

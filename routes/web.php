@@ -27,9 +27,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     //Landing
-    Route::get('/questionnaire/{courseDetail}', [LandingController::class, 'questionnaire'])->name('questionnaire');
-    Route::post('/questionnaire/{courseDetail}', [LandingController::class, 'store'])->name('questionnaire.store');
-    Route::get('/questionnaire/result/{questionnaireResult}', [LandingController::class, 'result'])->name('questionnaire.result');
+    Route::get('landing/questionnaire', [LandingController::class, 'questionnaire'])->name('landing.questionnaire');
+    Route::post('landing/questionnaire', [LandingController::class, 'store'])->name('landing.questionnaire.store');
+    Route::get('/landing/questionnaire/result/{questionnaireResult}', [LandingController::class, 'result'])->name('landing.questionnaire.result');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -89,14 +89,13 @@ Route::middleware('auth')->group(function () {
     Route::get('courses/details/{courseDetail}/edit', [CourseDetailController::class, 'edit'])->name('courses.details.edit');
     Route::put('courses/details/{courseDetail}', [CourseDetailController::class, 'update'])->name('courses.details.update');
     Route::delete('courses/details/{courseDetail}', [CourseDetailController::class, 'destroy'])->name('courses.details.destroy');
-    Route::get('courses/details/{courseDetail}/result', [CourseDetailController::class, 'result'])->name('courses.details.result');
     //Modules
     Route::get('courses/details/{courseDetail}/modules', [ModuleController::class, 'index'])->name('courses.details.modules.index');
     Route::get('courses/details/{courseDetail}/modules/create', [ModuleController::class, 'create'])->name('courses.details.modules.create');
     Route::post('courses/details/{courseDetail}/modules', [ModuleController::class, 'store'])->name('courses.details.modules.store');
     Route::get('courses/details/modules/{module}/edit', [ModuleController::class, 'edit'])->name('courses.details.modules.edit');
     Route::put('courses/details/modules/{module}', [ModuleController::class, 'update'])->name('courses.details.modules.update');
-    Route::delete('courses/details/modules/{module}', [ModuleController::class, 'destroy'])->name('courses.details.modules.destroy');   
+    Route::delete('courses/details/modules/{module}', [ModuleController::class, 'destroy'])->name('courses.details.modules.destroy');
     //Schedules
     Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules.index');
     Route::get('schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
@@ -111,20 +110,17 @@ Route::middleware('auth')->group(function () {
     Route::get('learning-categories/{learningCategory}/edit', [LearningCategoryController::class, 'edit'])->name('learning_categories.edit');
     Route::put('learning-categories/{learningCategory}', [LearningCategoryController::class, 'update'])->name('learning_categories.update');
     Route::delete('learning-categories/{learningCategory}', [LearningCategoryController::class, 'destroy'])->name('learning_categories.destroy');
-    //Questionnairies
-    Route::get('courses/details/{courseDetail}/questionnaires', [QuestionnairyController::class, 'index'])->name('courses.details.questionnaires.index');
-    Route::get('courses/details/{courseDetail}/questionnaires/create', [QuestionnairyController::class, 'create'])->name('courses.details.questionnaires.create');
-    Route::post('courses/details/{courseDetail}/questionnaires', [QuestionnairyController::class, 'store'])->name('courses.details.questionnaires.store');
-    Route::get('courses/details/questionnaires/{questionnairy}/edit', [QuestionnairyController::class, 'edit'])->name('courses.details.questionnaires.edit');
-    Route::put('courses/details/questionnaires/{questionnairy}', [QuestionnairyController::class, 'update'])->name('courses.details.questionnaires.update');
-    Route::delete('courses/details/questionnaires/{questionnairy}', [QuestionnairyController::class, 'destroy'])->name('courses.details.questionnaires.destroy');
-    //Learning Category Questionnairies
-    Route::get('courses/details/questionnaires/{questionnairy}/category', [LearningCategoryQuestionnairyController::class, 'index'])->name('courses.details.questionnaires.category.index');
-    Route::get('courses/details/questionnaires/{questionnairy}/category/create', [LearningCategoryQuestionnairyController::class, 'create'])->name('courses.details.questionnaires.category.create');
-    Route::post('courses/details/questionnaires/{questionnairy}/category', [LearningCategoryQuestionnairyController::class, 'store'])->name('courses.details.questionnaires.category.store');
-    Route::get('courses/details/questionnaires/category/{learningCategoryQuestionnairy}/edit', [LearningCategoryQuestionnairyController::class, 'edit'])->name('courses.details.questionnaires.category.edit');
-    Route::put('courses/details/questionnaires/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'update'])->name('courses.details.questionnaires.category.update');
-    Route::delete('courses/details/questionnaires/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'destroy'])->name('courses.details.questionnaires.category.destroy');
+    // Questionnaires
+    Route::get('questionnaires', [QuestionnairyController::class, 'index'])->name('questionnaires.index');
+    Route::post('questionnaires', [QuestionnairyController::class, 'store'])->name('questionnaires.store');
+    Route::put('questionnaires/{questionnairy}', [QuestionnairyController::class, 'update'])->name('questionnaires.update');
+    Route::delete('questionnaires/{questionnairy}', [QuestionnairyController::class, 'destroy'])->name('questionnaires.destroy');
+    Route::get('questionnaires/result', [QuestionnairyController::class, 'result'])->name('questionnaires.result');
+    // Learning Category Questionnairies
+    Route::get('questionnairies/category/{questionnairy}', [LearningCategoryQuestionnairyController::class, 'index'])->name('questionnaires.category.index');
+    Route::post('questionnairies/category/{questionnairy}', [LearningCategoryQuestionnairyController::class, 'store'])->name('questionnaires.category.store');
+    Route::put('questionnairies/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'update'])->name('questionnaires.category.update');
+    Route::delete('questionnairies/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'destroy'])->name('questionnaires.category.destroy');
 });
 
 require __DIR__.'/auth.php';

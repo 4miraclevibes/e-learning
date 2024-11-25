@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules');
             $table->foreignId('student_id')->constrained('students');
-            $table->foreignId('learning_category_id')->constrained('learning_categories');
             $table->timestamps();
         });
     }

@@ -1,11 +1,12 @@
 @extends('layouts.backend.main')
 
 @section('content')
-<!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="card">
     <div class="card-header">
-      <a href="{{ route('learning_categories.create') }}" class="btn btn-primary btn-sm">Create</a>
+      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createModal">
+        Create
+      </button>
     </div>
   </div>
   <div class="card mt-2">
@@ -27,7 +28,9 @@
             <td>{{ $learningCategory->name }}</td>
             <td>{{ $learningCategory->description }}</td>
             <td>
-              <a href="{{ route('learning_categories.edit', $learningCategory->id) }}" class="btn btn-warning btn-sm">Edit</a>
+              <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $learningCategory->id }}">
+                Edit
+              </button>
               <form action="{{ route('learning_categories.destroy', $learningCategory->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')
@@ -41,5 +44,66 @@
     </div>
   </div>
 </div>
-<!-- / Content -->
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Learning Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('learning_categories.store') }}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modals -->
+@foreach ($learningCategories as $learningCategory)
+<div class="modal fade" id="editModal{{ $learningCategory->id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Learning Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('learning_categories.update', $learningCategory->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" value="{{ $learningCategory->name }}" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" required>{{ $learningCategory->description }}</textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
+
 @endsection

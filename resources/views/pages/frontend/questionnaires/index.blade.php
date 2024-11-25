@@ -50,7 +50,7 @@
 <body>
     <div class="container questionnaire-container">
         <h1 class="text-center mb-5">Kuesioner</h1>
-        <form id="questionnaireForm" action="{{ route('questionnaire.store', $courseDetail->id) }}" method="POST">
+        <form id="questionnaireForm" action="{{ route('landing.questionnaire.store') }}" method="POST">
             @csrf
             @foreach ($questionnaires as $index => $questionnaire)
                 <div class="question {{ $loop->first ? 'active' : '' }}" data-question="{{ $index + 1 }}">
@@ -99,7 +99,7 @@
 
                     // Hapus kelas 'selected' dari semua tombol jawaban dalam pertanyaan ini
                     currentQuestion.querySelectorAll('.answer-btn').forEach(btn => btn.classList.remove('selected'));
-                    
+
                     // Tambahkan kelas 'selected' ke tombol yang diklik
                     e.target.classList.add('selected');
 

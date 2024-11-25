@@ -16,6 +16,7 @@ class StudentSeeder extends Seeder
         $students = [
             [
                 'user_id' => 2,
+                'learning_category_id' => 1,
                 'study_program_id' => 1,
                 'nim' => '1234567890',
                 'gender' => 'male',
@@ -25,6 +26,7 @@ class StudentSeeder extends Seeder
             ],
             [
                 'user_id' => 3,
+                'learning_category_id' => 2,
                 'study_program_id' => 2,
                 'nim' => '1234567891',
                 'gender' => 'female',
@@ -34,6 +36,7 @@ class StudentSeeder extends Seeder
             ],
             [
                 'user_id' => 4,
+                'learning_category_id' => 3,
                 'study_program_id' => 3,
                 'nim' => '1234567892',
                 'gender' => 'male',
@@ -43,6 +46,7 @@ class StudentSeeder extends Seeder
             ],
             [
                 'user_id' => 5,
+                'learning_category_id' => 4,
                 'study_program_id' => 3,
                 'nim' => '1234567893',
                 'gender' => 'female',
@@ -52,6 +56,7 @@ class StudentSeeder extends Seeder
             ],
             [
                 'user_id' => 6,
+                'learning_category_id' => 5,
                 'study_program_id' => 3,
                 'nim' => '1234567894',
                 'gender' => 'male',

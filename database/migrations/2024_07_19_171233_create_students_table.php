@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('study_program_id')->constrained('study_programs')->onDelete('cascade');
+            $table->foreignId('learning_category_id')->constrained('learning_categories')->onDelete('cascade');
             $table->string('nik');
             $table->string('profile_picture')->nullable();
             $table->string('nim');

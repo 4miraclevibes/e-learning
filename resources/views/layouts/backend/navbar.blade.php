@@ -7,14 +7,14 @@
                   <img src="{{ asset('assets/img/logo-elearning-unp.png') }}" style="max-width: 250px" alt="">
                 </span>
               </a>
-  
+
               <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
                 <i class="bx bx-chevron-left bx-sm align-middle"></i>
               </a>
             </div>
-  
+
             <div class="menu-inner-shadow"></div>
-  
+
             <ul class="menu-inner py-1 mt-3">
               {{-- Dashboard --}}
               <li class="menu-item {{ Route::is('dashboard') ? 'active' : '' }}">
@@ -84,6 +84,13 @@
                 <a href="{{ route('learning_categories.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-book"></i>
                   <div data-i18n="Analytics">Learning Categories</div>
+                </a>
+              </li>
+              {{-- Questionnaires --}}
+              <li class="menu-item {{ Route::is('questionnaires*') ? 'active' : '' }}">
+                <a href="{{ route('questionnaires.index') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bxs-book"></i>
+                  <div data-i18n="Analytics">Questionnaires</div>
                 </a>
               </li>
             </ul>

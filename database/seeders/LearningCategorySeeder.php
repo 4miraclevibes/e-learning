@@ -26,8 +26,8 @@ class LearningCategorySeeder extends Seeder
                 'description' => 'Siswa dengan gaya belajar ini lebih baik dalam menyerap informasi melalui suara, percakapan, dan pembicaraan. Mereka cenderung lebih mudah memahami dan mengingat informasi yang disajikan secara verbal.'
             ],
             [
-                'name' => 'Read/Write',
-                'description' => 'Siswa dengan gaya belajar ini lebih baik dalam menyerap informasi melalui membaca dan menulis. Mereka cenderung lebih mudah memahami dan mengingat informasi yang disajikan secara tertulis.'
+                'name' => 'Teknologi',
+                'description' => 'Siswa dengan gaya belajar ini lebih baik dalam menyerap informasi melalui media teknologi dan digital. Mereka cenderung lebih mudah memahami dan mengingat informasi yang disajikan melalui perangkat teknologi.'
             ],
             [
                 'name' => 'Kinestetik',
@@ -43,158 +43,53 @@ class LearningCategorySeeder extends Seeder
             LearningCategory::create($category);
         }
 
-        $courses = [
-            [
-                'name' => 'Algoritma',
-                'code' => 'ALG',
-                'sks' => 3,
-                'status' => 'active',
-                'description' => 'Algoritma',
-                'user_id' => 1,
-            ],
-            [
-                'name' => 'Pemrograman Web',
-                'code' => 'PWB',
-                'sks' => 3,
-                'status' => 'active',
-                'description' => 'Pemrograman Web',
-                'user_id' => 1,
-            ],
-            [
-                'name' => 'Pemrograman Mobile',
-                'code' => 'PMB',
-                'sks' => 3,
-                'status' => 'active',
-                'description' => 'Pemrograman Mobile',
-                'user_id' => 1,
-            ],
-            [
-                'name' => 'Pemrograman Desktop',
-                'code' => 'PDM',
-                'sks' => 3,
-                'status' => 'active',
-                'description' => 'Pemrograman Desktop',
-                'user_id' => 1,
-            ],
-        ];
-
-        foreach ($courses as $course) {
-            Course::create($course);
-        }
-
-        $courseDetails = [
-            [
-                'course_id' => 1,
-                'lecturer_id' => 1,
-                'user_id' => 1,
-                'code' => 'ALG1',
-                'study_program_id' => 1,
-            ],
-            [
-                'course_id' => 1,
-                'lecturer_id' => 2,
-                'user_id' => 1,
-                'code' => 'ALG2',
-                'study_program_id' => 1,
-            ],
-            [
-                'course_id' => 1,
-                'lecturer_id' => 3,
-                'user_id' => 1,
-                'code' => 'ALG3',
-                'study_program_id' => 1,
-            ],
-            [
-                'course_id' => 2,
-                'lecturer_id' => 4,
-                'user_id' => 1,
-                'code' => 'PWB1',
-                'study_program_id' => 2,
-            ],
-            [
-                'course_id' => 3,
-                'lecturer_id' => 5,
-                'user_id' => 1,
-                'code' => 'PMB1',
-                'study_program_id' => 3,
-            ],
-            [
-                'course_id' => 4,
-                'lecturer_id' => 6,
-                'user_id' => 1,
-                'code' => 'PDM1',
-                'study_program_id' => 1,
-            ],
-            [
-                'course_id' => 4,
-                'lecturer_id' => 7,
-                'user_id' => 1,
-                'code' => 'PDM2',
-                'study_program_id' => 2,
-            ],
-        ];
-
-        foreach ($courseDetails as $courseDetail) {
-            CourseDetail::create($courseDetail);
-        }
-
         $questionnaires = [
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 1',
                 'description' => 'Ketika Anda belajar dari sebuah buku, apa yang biasanya Anda lakukan?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 2',
                 'description' => 'Bagaimana cara Anda mengingat informasi baru?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 3',
                 'description' => 'Ketika Anda menghadapi masalah yang sulit, apa yang biasanya Anda lakukan?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 4',
                 'description' => 'Bagaimana cara Anda mempersiapkan diri untuk ujian?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 5',
                 'description' => 'Apa yang paling membantu Anda dalam memahami materi baru di kelas?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 6',
                 'description' => 'Bagaimana cara Anda paling suka menghabiskan waktu luang?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 7',
                 'description' => 'Apa yang Anda lakukan ketika pertama kali mendapatkan instruksi baru?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 8',
                 'description' => 'Ketika Anda berpartisipasi dalam proyek kelompok, apa peran Anda?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 9',
                 'description' => 'Bagaimana cara Anda memahami arah atau instruksi lokasi?',
                 'status' => 'active',
             ],
             [
-                'course_detail_id' => 1,
                 'name' => 'Quiz 10',
                 'description' => 'Apa yang paling membantu Anda dalam belajar keterampilan baru?',
                 'status' => 'active',
@@ -220,7 +115,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 1,
-                'description' => 'Saya membuat catatan dan ringkasan dari apa yang saya baca. (Read/Write)',
+                'description' => 'Saya membuat catatan dan ringkasan dari apa yang saya baca. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -250,7 +145,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 2,
-                'description' => 'Saya mengingat dengan menulis ulang atau mengetik informasi tersebut. (Read/Write)',
+                'description' => 'Saya mengingat dengan menulis ulang atau mengetik informasi tersebut. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -280,7 +175,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 3,
-                'description' => 'Saya menuliskan masalah dan mencoba menemukan solusinya melalui tulisan. (Read/Write)',
+                'description' => 'Saya menuliskan masalah dan mencoba menemukan solusinya melalui tulisan. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -295,7 +190,7 @@ class LearningCategorySeeder extends Seeder
                 'description' => 'Saya menggunakan kombinasi dari diagram, diskusi, menulis, dan praktik. (Campuran)',
                 'learning_category_id' => 5,
                 'status' => 'active',
-            ],            
+            ],
             [
                 'questionnairy_id' => 4,
                 'description' => 'Saya melihat kembali catatan, diagram, atau grafik. (Visual)',
@@ -310,7 +205,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 4,
-                'description' => 'Saya membaca kembali buku teks dan membuat ringkasan. (Read/Write)',
+                'description' => 'Saya membaca kembali buku teks dan membuat ringkasan. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -340,7 +235,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 5,
-                'description' => 'Membaca buku teks atau handout yang diberikan. (Read/Write)',
+                'description' => 'Membaca buku teks atau handout yang diberikan. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -370,7 +265,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 6,
-                'description' => 'Membaca buku atau menulis jurnal. (Read/Write)',
+                'description' => 'Membaca buku atau menulis jurnal. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -400,7 +295,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 7,
-                'description' => 'Saya membaca dan menuliskan instruksi tersebut. (Read/Write)',
+                'description' => 'Saya membaca dan menuliskan instruksi tersebut. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -430,7 +325,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 8,
-                'description' => 'Saya sering menulis laporan atau mencatat hasil diskusi. (Read/Write)',
+                'description' => 'Saya sering menulis laporan atau mencatat hasil diskusi. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -460,7 +355,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 9,
-                'description' => 'Saya lebih suka membaca petunjuk tertulis atau panduan arah. (Read/Write)',
+                'description' => 'Saya lebih suka membaca petunjuk tertulis atau panduan arah. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],
@@ -490,7 +385,7 @@ class LearningCategorySeeder extends Seeder
             ],
             [
                 'questionnairy_id' => 10,
-                'description' => 'Membaca panduan atau buku tentang keterampilan tersebut. (Read/Write)',
+                'description' => 'Membaca panduan atau buku tentang keterampilan tersebut. (Teknologi)',
                 'learning_category_id' => 3,
                 'status' => 'active',
             ],

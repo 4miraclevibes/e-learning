@@ -13,9 +13,9 @@ class LearningCategory extends Model
     {
         return $this->hasMany(Module::class);
     }
-    public function scheduleStudents()
+    public function students()
     {
-        return $this->hasMany(ScheduleStudent::class);
+        return $this->hasMany(Student::class);
     }
     public function exam()
     {

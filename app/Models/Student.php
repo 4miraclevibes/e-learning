@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'nim', 'study_program_id', 'gender', 'phone', 'address', 'nik', 'profile_picture'];
+    protected $fillable = ['user_id', 'nim', 'study_program_id', 'gender', 'phone', 'address', 'nik', 'profile_picture', 'learning_category_id'];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -16,6 +16,10 @@ class Student extends Model
     public function studyProgram()
     {
         return $this->belongsTo(StudyProgram::class);
+    }
+    public function learningCategory()
+    {
+        return $this->belongsTo(LearningCategory::class);
     }
     public function scheduleStudents()
     {

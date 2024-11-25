@@ -11,7 +11,7 @@ class QuestionnaireResult extends Model
 
     protected $fillable = [
         'user_id',
-        'course_detail_id'
+        'student_id',
     ];
 
     public function user()
@@ -19,9 +19,9 @@ class QuestionnaireResult extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function courseDetail()
+    public function student()
     {
-        return $this->belongsTo(CourseDetail::class);
+        return $this->belongsTo(Student::class);
     }
 
     public function questionnaireResultDetails()

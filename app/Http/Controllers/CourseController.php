@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\StudyProgram;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
     public function index()
@@ -29,7 +29,7 @@ class CourseController extends Controller
             'description' => 'nullable',
         ]);
         $data = $request->all();
-        $data['user_id'] = auth()->user()->id;
+        $data['user_id'] = Auth::user()->id;
         Course::create($data);
         return redirect()->route('courses.index')->with('success', 'Mata Kuliah berhasil dibuat');
     }

@@ -5,20 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\CourseDetail;
 use App\Models\QuestionnaireResult;
 use App\Models\QuestionnaireResultDetail;
+use App\Models\Questionnairy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class LandingController extends Controller
 {
-    public function questionnaire(CourseDetail $courseDetail)
+    public function questionnaire()
     {
-        $questionnaires = $courseDetail->questionnaires;
-        return view('pages.frontend.questionnaires.index', compact('questionnaires', 'courseDetail'));
+        $questionnaires = Questionnairy::all();
+        return view('pages.frontend.questionnaires.index', compact('questionnaires'));
     }
-    public function store(CourseDetail $courseDetail, Request $request)
+    public function store(Request $request)
     {
         $questionnaireResult = QuestionnaireResult::create([
             'user_id' => Auth::user()->id,
-            'course_detail_id' => $courseDetail->id,
+            'student_id' => Auth::user()->student->id ?? 1,
         ]);
 
         foreach ($request->input('answers') as $questionnaireId => $answerJson) {
