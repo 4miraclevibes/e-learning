@@ -5,8 +5,9 @@
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="card mt-2">
     <h5 class="card-header">Hasil Kuesioner</h5>
-    <div class="card-body">
-      <a href="{{ route('questionnaires.index') }}" class="btn btn-sm btn-secondary">Back</a>
+    <div class="card-body d-flex justify-content-between">
+      <a href="{{ route('questionnaires.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
+      <a href="{{ route('questionnaires.result.json') }}" class="btn btn-sm btn-info">JSON</a>
     </div>
     <div class="table-responsive text-nowrap p-3">
       <table class="table" id="example">
@@ -29,7 +30,7 @@
             <td>{{ $result['category_result'] }}</td>
             <td>{{ $result['score'] }}</td>
             <td>
-              <a href="{{ route('questionnaire.result', $result['id']) }}" target="_blank" class="btn btn-sm btn-primary">View</a>
+              <a href="{{ route('landing.questionnaire.result', $result['id']) }}" target="_blank" class="btn btn-sm btn-primary">View</a>
             </td>
           </tr>
           @endforeach

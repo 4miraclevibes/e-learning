@@ -41,9 +41,20 @@ class ModuleController extends Controller
         return redirect()->route('courses.details.modules.index', $module->course_detail_id)->with('success', 'Module updated successfully');
     }
 
+    public function show(Module $module)
+    {
+        return view('pages.backend.courses.details.modules.show', compact('module'));
+    }
+
     public function destroy(Module $module)
     {
         $module->delete();
         return redirect()->route('courses.details.modules.index', $module->course_detail_id)->with('success', 'Module deleted successfully');
+    }
+
+    public function json(CourseDetail $courseDetail)
+    {
+        $modules = $courseDetail->modules;
+        return response()->json($modules);
     }
 }

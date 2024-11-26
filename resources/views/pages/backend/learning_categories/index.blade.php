@@ -17,7 +17,6 @@
           <tr class="text-nowrap table-dark">
             <th class="text-white">No</th>
             <th class="text-white">Name</th>
-            <th class="text-white">Description</th>
             <th class="text-white">Actions</th>
           </tr>
         </thead>
@@ -26,8 +25,10 @@
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $learningCategory->name }}</td>
-            <td>{{ $learningCategory->description }}</td>
             <td>
+              <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ $learningCategory->id }}">
+                Detail
+              </button>
               <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $learningCategory->id }}">
                 Edit
               </button>
@@ -101,6 +102,33 @@
           <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+@endforeach
+
+<!-- Detail Modals -->
+@foreach ($learningCategories as $learningCategory)
+<div class="modal fade" id="detailModal{{ $learningCategory->id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail Learning Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Name:</label>
+          <p>{{ $learningCategory->name }}</p>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Description:</label>
+          <p>{{ $learningCategory->description }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>

@@ -59,7 +59,50 @@
         .dt-input{
           margin-right: 15px !important;
         }
-        .custom-alert {
+      .description-container {
+          max-width: 100%;
+      }
+
+      .description-container .description {
+          width: 100%;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+      }
+
+      .description-container img {
+        max-width: 100%;
+      }
+
+      .description-container figcaption{
+        text-align: center;
+      }
+
+      .description-container figure .media{
+        border: 1px solid #000;
+        width: 100px;
+      }
+
+    .ck-editor__editable[role="textbox"] {
+      /* editing area */
+      min-height: 200px;
+    }
+
+    .ck-content .image {
+      /* block images */
+      max-width: 80%;
+      margin: 20px auto;
+    }
+
+    .bg-menu-theme .menu-inner > .menu-item.active > .menu-link{
+      background-color: #FFA700 !important;
+      color: #fff !important;
+    }
+
+    .bg-menu-theme .menu-inner > .menu-item.active:before{
+      background-color: #FFA700 !important;
+    }
+
+    .custom-alert {
         position: fixed;
         top: 20px;
         right: 20px;
@@ -116,48 +159,6 @@
     }
     .custom-alert-close:hover {
         opacity: .75;
-    }
-      .description-container {
-          max-width: 100%;
-      }
-
-      .description-container .description {
-          width: 100%;
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-      }
-
-      .description-container img {
-        max-width: 100%;
-      }
-
-      .description-container figcaption{
-        text-align: center;
-      }
-
-      .description-container figure .media{
-        border: 1px solid #000;
-        width: 100px;
-      }
-
-    .ck-editor__editable[role="textbox"] {
-      /* editing area */
-      min-height: 200px;
-    }
-
-    .ck-content .image {
-      /* block images */
-      max-width: 80%;
-      margin: 20px auto;
-    }
-
-    .bg-menu-theme .menu-inner > .menu-item.active > .menu-link{
-      background-color: #FFA700 !important;
-      color: #fff !important;
-    }
-
-    .bg-menu-theme .menu-inner > .menu-item.active:before{
-      background-color: #FFA700 !important;
     }
   </style>
   </head>
@@ -421,12 +422,19 @@
         $('#select2').select2();
       });
     </script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var alert = document.getElementById('customAlert');
+            if (alert) {
+                setTimeout(function() {
+                    alert.classList.add('show');
+                }, 100);
+                setTimeout(function() {
+                    closeAlert();
+                }, 5000);
+            }
+        });
+
         function closeAlert() {
             var alert = document.getElementById('customAlert');
             if (alert) {
@@ -437,5 +445,10 @@
             }
         }
     </script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </body>
 </html>

@@ -47,10 +47,11 @@ class QuestionnairyController extends Controller
         return redirect()->route('questionnaires.index', $questionnairy->course_detail_id)->with('success', 'Questionnairy deleted successfully');
     }
 
-    public function result(CourseDetail $courseDetail)
+    public function result()
     {
         $questionnaireResults = QuestionnaireResult::with([
             'user',
+            'student',
             'questionnaireResultDetails.learningCategoryQuestionnairy.learningCategory'
         ])
         ->get();
@@ -87,5 +88,41 @@ class QuestionnairyController extends Controller
                     'category_name' => $group->first()->learningCategoryQuestionnairy->learningCategory->name
                 ];
             });
+    }
+
+    public function resultJson()
+    {
+        $questionnaireResults = QuestionnaireResult::with([
+            'user',
+            'student',
+            'questionnaireResultDetails.learningCategoryQuestionnairy.learningCategory'
+        ])
+        ->get()
+        ->map(function ($result) {
+            return [
+                'id' => $result->id,
+                'user_id' => $result->user_id,
+                'student_id' => $result->student_id,
+                'user' => [
+                    'id' => $result->user->id
+                ],
+                'student' => [
+                    'id' => $result->student->id
+                ],
+                'questionnaire_result_details' => $result->questionnaireResultDetails->map(function ($detail) {
+                    return [
+                        'id' => $detail->id,
+                        'learning_category_questionnairy' => [
+                            'id' => $detail->learningCategoryQuestionnairy->id,
+                            'learning_category' => [
+                                'id' => $detail->learningCategoryQuestionnairy->learningCategory->id
+                            ]
+                        ]
+                    ];
+                })
+            ];
+        });
+
+        return response()->json($questionnaireResults);
     }
 }

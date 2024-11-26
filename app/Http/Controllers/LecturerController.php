@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lecturer;
 use App\Models\StudyProgram;
 use App\Models\User;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -75,5 +76,14 @@ class LecturerController extends Controller
         Storage::delete($lecturer->profile_picture);
         $lecturer->delete();
         return redirect()->route('lecturers.index')->with('success', 'Lecturer deleted successfully');
+    }
+
+    public function schedules(Lecturer $lecturer)
+    {
+        $schedules = Schedule::whereHas('courseDetail', function($query) use ($lecturer) {
+            $query->where('lecturer_id', $lecturer->id);
+        })->with(['courseDetail.course', 'courseDetail.lecturer.user'])->get();
+
+        return view('pages.backend.lecturers.schedules.index', compact('schedules', 'lecturer'));
     }
 }

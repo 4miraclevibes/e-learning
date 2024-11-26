@@ -23,6 +23,7 @@
                   <div data-i18n="Analytics">Dashboard</div>
                 </a>
               </li>
+              @if (Auth::user()->role->name == 'ADMIN')
               {{-- Users --}}
               <li class="menu-item {{ Route::is('users*') ? 'active' : '' }}">
                 <a href="{{ route('users.index') }}" class="menu-link">
@@ -59,7 +60,7 @@
                 </a>
               </li>
               {{-- Lecturers --}}
-              <li class="menu-item {{ Route::is('lecturers*') ? 'active' : '' }}">
+              <li class="menu-item {{ Route::is('lecturers.index') ? 'active' : '' }}">
                 <a href="{{ route('lecturers.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-group"></i>
                   <div data-i18n="Analytics">Lecturers</div>
@@ -79,6 +80,25 @@
                   <div data-i18n="Analytics">Schedules</div>
                 </a>
               </li>
+              @endif
+              @if (Auth::user()->student)
+              {{-- Schedule Students --}}
+              <li class="menu-item {{ Route::is('schedule_students*') ? 'active' : '' }}">
+                <a href="{{ route('schedule_students.index') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bxs-calendar"></i>
+                  <div data-i18n="Analytics">Schedule Students</div>
+                </a>
+              </li>
+              @endif
+              @if (Auth::user()->lecturer)
+              {{-- Lecturer Schedules --}}
+              <li class="menu-item {{ Route::is('lecturers.schedules', 'courses.details.modules.index', 'courses.details.modules.show') ? 'active' : '' }}">
+                <a href="{{ route('lecturers.schedules', Auth::user()->lecturer->id) }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bxs-calendar"></i>
+                  <div data-i18n="Analytics">Lecturer Schedules</div>
+                </a>
+              </li>
+              @endif
               {{-- Learning Categories --}}
               <li class="menu-item {{ Route::is('learning_categories*') ? 'active' : '' }}">
                 <a href="{{ route('learning_categories.index') }}" class="menu-link">

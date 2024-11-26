@@ -12,6 +12,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionnairyController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ScheduleStudentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('lecturers/{lecturer}/edit', [LecturerController::class, 'edit'])->name('lecturers.edit');
     Route::put('lecturers/{lecturer}', [LecturerController::class, 'update'])->name('lecturers.update');
     Route::delete('lecturers/{lecturer}', [LecturerController::class, 'destroy'])->name('lecturers.destroy');
+    Route::get('lecturers/{lecturer}/schedules', [LecturerController::class, 'schedules'])->name('lecturers.schedules');
     //Students
     Route::get('students', [StudentController::class, 'index'])->name('students.index');
     Route::get('students/create', [StudentController::class, 'create'])->name('students.create');
@@ -96,6 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('courses/details/modules/{module}/edit', [ModuleController::class, 'edit'])->name('courses.details.modules.edit');
     Route::put('courses/details/modules/{module}', [ModuleController::class, 'update'])->name('courses.details.modules.update');
     Route::delete('courses/details/modules/{module}', [ModuleController::class, 'destroy'])->name('courses.details.modules.destroy');
+    Route::get('courses/details/modules/{module}', [ModuleController::class, 'show'])->name('courses.details.modules.show');
+    Route::get('courses/details/modules/json/{courseDetail}', [ModuleController::class, 'json'])->name('courses.details.modules.json');
     //Schedules
     Route::get('schedules', [ScheduleController::class, 'index'])->name('schedules.index');
     Route::get('schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
@@ -116,11 +120,16 @@ Route::middleware('auth')->group(function () {
     Route::put('questionnaires/{questionnairy}', [QuestionnairyController::class, 'update'])->name('questionnaires.update');
     Route::delete('questionnaires/{questionnairy}', [QuestionnairyController::class, 'destroy'])->name('questionnaires.destroy');
     Route::get('questionnaires/result', [QuestionnairyController::class, 'result'])->name('questionnaires.result');
+    Route::get('questionnaires/result/json', [QuestionnairyController::class, 'resultJson'])->name('questionnaires.result.json');
     // Learning Category Questionnairies
     Route::get('questionnairies/category/{questionnairy}', [LearningCategoryQuestionnairyController::class, 'index'])->name('questionnaires.category.index');
     Route::post('questionnairies/category/{questionnairy}', [LearningCategoryQuestionnairyController::class, 'store'])->name('questionnaires.category.store');
     Route::put('questionnairies/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'update'])->name('questionnaires.category.update');
     Route::delete('questionnairies/category/{learningCategoryQuestionnairy}', [LearningCategoryQuestionnairyController::class, 'destroy'])->name('questionnaires.category.destroy');
+    // Schedule Students
+    Route::get('schedule-students', [ScheduleStudentController::class, 'index'])->name('schedule_students.index');
+    Route::post('schedule-students/{schedule}', [ScheduleStudentController::class, 'store'])->name('schedule_students.store');
+    Route::delete('schedule-students/{scheduleStudent}', [ScheduleStudentController::class, 'destroy'])->name('schedule_students.destroy');
 });
 
 require __DIR__.'/auth.php';

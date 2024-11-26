@@ -31,7 +31,7 @@ class LandingController extends Controller
             ]);
         }
 
-        return redirect()->route('questionnaire.result', $questionnaireResult->id);
+        return redirect()->route('landing.questionnaire.result', $questionnaireResult->id);
     }
 
     public function result(QuestionnaireResult $questionnaireResult)

@@ -7,8 +7,9 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">Modul Mata Kuliah: {{ $courseDetail->course->name }}</h5>
       <div>
+        <a href="{{ route('courses.details.modules.json', $courseDetail->id) }}" class="btn btn-info btn-sm">JSON</a>
         <a href="{{ route('courses.details.modules.create', $courseDetail->id) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
-        <a href="{{ route('courses.details.index', $courseDetail->id) }}" class="btn btn-secondary btn-sm">Kembali</a>
+        <a href="{{ route('lecturers.schedules', $courseDetail->lecturer->id) }}" class="btn btn-secondary btn-sm">Kembali</a>
       </div>
     </div>
   </div>
@@ -33,6 +34,7 @@
             <td>{{ $module->learningCategory->name }}</td>
             <td>
               <a href="{{ route('courses.details.modules.edit', $module->id) }}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{{ route('courses.details.modules.show', $module->id) }}" class="btn btn-info btn-sm">Detail</a>
               <form action="{{ route('courses.details.modules.destroy', $module->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')

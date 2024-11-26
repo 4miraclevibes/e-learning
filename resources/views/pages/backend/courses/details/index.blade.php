@@ -33,7 +33,6 @@
             <td>{{ $courseDetail->lecturer ? $courseDetail->lecturer->user->name : 'Belum ditentukan' }}</td>
             <td>
               <a href="{{ route('courses.details.edit', $courseDetail->id) }}" class="btn btn-warning btn-sm">Edit</a>
-              <a href="{{ route('courses.details.modules.index', $courseDetail->id) }}" class="btn btn-secondary btn-sm">Modul</a>
               <form action="{{ route('courses.details.destroy', $courseDetail->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')
