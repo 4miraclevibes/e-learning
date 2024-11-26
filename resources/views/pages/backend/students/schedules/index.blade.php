@@ -34,6 +34,7 @@
               <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ $scheduleStudent->id }}">
                 Detail
               </button>
+              <a href="{{ route('courses.details.modules.index', $scheduleStudent->schedule->courseDetail->id) }}" class="btn btn-primary btn-sm">Modules</a>
               <form action="{{ route('schedule_students.destroy', $scheduleStudent->id) }}" method="POST" style="display:inline-block;">
                 @csrf
                 @method('DELETE')

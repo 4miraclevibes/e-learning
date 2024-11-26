@@ -3,6 +3,7 @@
 @section('content')
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
+    @if(Auth::user()->lecturer)
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">Modul Mata Kuliah: {{ $courseDetail->course->name }}</h5>
@@ -13,6 +14,7 @@
       </div>
     </div>
   </div>
+  @endif
   <div class="card mt-2">
     <div class="table-responsive text-nowrap p-3">
       <table class="table" id="example">
@@ -33,13 +35,15 @@
             <td>{{ $module->pertemuan }}</td>
             <td>{{ $module->learningCategory->name }}</td>
             <td>
-              <a href="{{ route('courses.details.modules.edit', $module->id) }}" class="btn btn-warning btn-sm">Edit</a>
-              <a href="{{ route('courses.details.modules.show', $module->id) }}" class="btn btn-info btn-sm">Detail</a>
-              <form action="{{ route('courses.details.modules.destroy', $module->id) }}" method="POST" style="display:inline-block;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
-              </form>
+                <a href="{{ route('courses.details.modules.show', $module->id) }}" class="btn btn-info btn-sm">Detail</a>
+                @if(Auth::user()->lecturer)
+                <a href="{{ route('courses.details.modules.edit', $module->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ route('courses.details.modules.destroy', $module->id) }}" method="POST" style="display:inline-block;">
+                    @csrf
+                    @method('DELETE')
+                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
+                </form>
+                @endif
             </td>
           </tr>
           @endforeach

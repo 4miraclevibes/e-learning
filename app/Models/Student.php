@@ -25,4 +25,8 @@ class Student extends Model
     {
         return $this->hasMany(ScheduleStudent::class);
     }
+    public function questionnaireResults()
+    {
+        return $this->hasMany(QuestionnaireResult::class);
+    }
 }

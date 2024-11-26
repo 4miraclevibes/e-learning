@@ -2,45 +2,63 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Student;
 use App\Models\QuestionnaireResult;
 use App\Models\QuestionnaireResultDetail;
+use App\Models\Student;
+use App\Models\LearningCategoryQuestionnairy;
+use App\Models\Questionnairy;
+use Illuminate\Database\Seeder;
 
 class ResultSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $students = Student::all();
+        $students = Student::with('user')->get();
+        $questionnaires = Questionnairy::all();
 
-        foreach ($students as $student) {
-            // Buat QuestionnaireResult
+        for ($i = 0; $i < 50; $i++) {
+            $randomStudentId = rand(1, 5);
+            $student = Student::find($randomStudentId);
+
+            // Buat hasil utama
             $result = QuestionnaireResult::create([
-                'user_id' => $student->user_id,
-                'student_id' => $student->id
+                'student_id' => $student->id,
+                'user_id' => $student->user->id,
+                'learning_category_id' => 1  // Akan diupdate nanti
             ]);
 
-            // Buat 10 QuestionnaireResultDetail untuk setiap result
-            $learningCategoryQuestionnaireIds = [
-                ['id' => 2, 'category_id' => 2],  // Auditori
-                ['id' => 7, 'category_id' => 2],  // Auditori
-                ['id' => 13, 'category_id' => 3], // Teknologi
-                ['id' => 16, 'category_id' => 1], // Visual
-                ['id' => 21, 'category_id' => 1], // Visual
-                ['id' => 26, 'category_id' => 1], // Visual
-                ['id' => 31, 'category_id' => 1], // Visual
-                ['id' => 36, 'category_id' => 1], // Visual
-                ['id' => 41, 'category_id' => 1], // Visual
-                ['id' => 46, 'category_id' => 1], // Visual
-            ];
-            foreach ($learningCategoryQuestionnaireIds as $index => $lcq) {
+            // Array untuk menghitung frekuensi kategori
+            $categoryFrequency = [];
+
+            // Buat detail hasil untuk setiap kuesioner
+            foreach ($questionnaires as $questionnaire) {
+                $relatedCategories = $questionnaire->learningCategoryQuestionnairies()
+                    ->with('learningCategory')
+                    ->get();
+
+                // Pilih kategori secara random
+                $selectedCategory = $relatedCategories[array_rand($relatedCategories->toArray())];
+
+                // Tambah frekuensi kategori yang terpilih
+                $learningCategoryId = $selectedCategory->learning_category_id;
+                $categoryFrequency[$learningCategoryId] = ($categoryFrequency[$learningCategoryId] ?? 0) + 1;
+
+                // Buat detail result
                 QuestionnaireResultDetail::create([
                     'result_id' => $result->id,
-                    'category_questionnairy_id' => $lcq['id'],
-                    'questionnairy_id' => $index + 1  // menggunakan index looping + 1 (agar mulai dari 1 bukan 0)
+                    'category_questionnairy_id' => $selectedCategory->id,
+                    'questionnairy_id' => $questionnaire->id,
                 ]);
             }
+
+            // Tentukan kategori dominan berdasarkan frekuensi tertinggi
+            arsort($categoryFrequency);
+            $dominantCategoryId = key($categoryFrequency);
+
+            // Update learning_category_id dengan kategori yang paling sering muncul
+            $result->update([
+                'learning_category_id' => $dominantCategoryId
+            ]);
         }
     }
 }

@@ -26,7 +26,7 @@
           <tr>
             <th scope="row">{{ $index + 1 }}</th>
             <td>{{ $result['user_name'] }}</td>
-            <td>{{ $result['category'] }}</td>
+            <td>{{ $result['name'] }}</td>
             <td>{{ $result['category_result'] }}</td>
             <td>{{ $result['score'] }}</td>
             <td>

@@ -52,7 +52,8 @@ class QuestionnairyController extends Controller
         $questionnaireResults = QuestionnaireResult::with([
             'user',
             'student',
-            'questionnaireResultDetails.learningCategoryQuestionnairy.learningCategory'
+            'questionnaireResultDetails.learningCategoryQuestionnairy.learningCategory',
+            'learningCategory'
         ])
         ->get();
 
@@ -64,7 +65,7 @@ class QuestionnairyController extends Controller
             return [
                 'id' => $questionnaireResult->id,
                 'user_name' => $questionnaireResult->user->name,
-                'category' => $mostCommonCategory ? $mostCommonCategory['category_name'] : 'Tidak ada kategori',
+                'name' => $questionnaireResult->learningCategory->name,
                 'category_result' => $categoryResults->map(function ($result) use ($totalQuestions) {
                     $percentage = ($result['count'] / $totalQuestions) * 100;
                     return $result['category_name'] . ': ' . number_format($percentage, 2) . '%';
@@ -85,7 +86,7 @@ class QuestionnairyController extends Controller
             ->map(function ($group) {
                 return [
                     'count' => $group->count(),
-                    'category_name' => $group->first()->learningCategoryQuestionnairy->learningCategory->name
+                    'category_name' => $group->first()->learningCategoryQuestionnairy->learningCategory->name,
                 ];
             });
     }

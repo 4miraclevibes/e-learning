@@ -21,7 +21,9 @@
             <th class="text-white">Date</th>
             <th class="text-white">Start Time</th>
             <th class="text-white">End Time</th>
+            @if (Auth::user()->role->name == 'ADMIN' || Auth::user()->student)
             <th class="text-white">Actions</th>
+            @endif
           </tr>
         </thead>
         <tbody>
@@ -32,6 +34,7 @@
             <td>{{ $schedule->date }}</td>
             <td>{{ $schedule->start_time }}</td>
             <td>{{ $schedule->end_time }}</td>
+            @if (Auth::user()->role->name == 'ADMIN' || Auth::user()->student)
             <td>
                 @if (Auth::user()->student)
                 @if (Auth::user()->student->scheduleStudents->where('schedule_id', $schedule->id)->count() == 0)
@@ -51,6 +54,7 @@
                 </form>
                 @endif
             </td>
+            @endif
           </tr>
           @endforeach
         </tbody>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('learning_category_id')->constrained('learning_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

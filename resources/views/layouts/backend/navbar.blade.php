@@ -72,7 +72,22 @@
                   <i class="menu-icon tf-icons bx bxs-book"></i>
                   <div data-i18n="Analytics">Courses</div>
                 </a>
-              </li>
+            </li>
+            {{-- Learning Categories --}}
+            <li class="menu-item {{ Route::is('learning_categories*') ? 'active' : '' }}">
+              <a href="{{ route('learning_categories.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-book"></i>
+                <div data-i18n="Analytics">Learning Categories</div>
+              </a>
+            </li>
+            {{-- Questionnaires --}}
+            <li class="menu-item {{ Route::is('questionnaires*') ? 'active' : '' }}">
+              <a href="{{ route('questionnaires.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-book"></i>
+                <div data-i18n="Analytics">Questionnaires</div>
+              </a>
+            </li>
+              @endif
               {{-- Schedules --}}
               <li class="menu-item {{ Route::is('schedules*') ? 'active' : '' }}">
                 <a href="{{ route('schedules.index') }}" class="menu-link">
@@ -80,10 +95,9 @@
                   <div data-i18n="Analytics">Schedules</div>
                 </a>
               </li>
-              @endif
               @if (Auth::user()->student)
               {{-- Schedule Students --}}
-              <li class="menu-item {{ Route::is('schedule_students*') ? 'active' : '' }}">
+              <li class="menu-item {{ Route::is('schedule_students.index', 'courses.details.modules.index', 'courses.details.modules.show') ? 'active' : '' }}">
                 <a href="{{ route('schedule_students.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-calendar"></i>
                   <div data-i18n="Analytics">Schedule Students</div>
@@ -92,27 +106,13 @@
               @endif
               @if (Auth::user()->lecturer)
               {{-- Lecturer Schedules --}}
-              <li class="menu-item {{ Route::is('lecturers.schedules', 'courses.details.modules.index', 'courses.details.modules.show') ? 'active' : '' }}">
+              <li class="menu-item {{ Route::is('lecturers.schedules', 'courses.details.modules.index', 'courses.details.modules.show', 'courses.details.modules.create', 'courses.details.modules.edit') ? 'active' : '' }}">
                 <a href="{{ route('lecturers.schedules', Auth::user()->lecturer->id) }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-calendar"></i>
                   <div data-i18n="Analytics">Lecturer Schedules</div>
                 </a>
               </li>
               @endif
-              {{-- Learning Categories --}}
-              <li class="menu-item {{ Route::is('learning_categories*') ? 'active' : '' }}">
-                <a href="{{ route('learning_categories.index') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bxs-book"></i>
-                  <div data-i18n="Analytics">Learning Categories</div>
-                </a>
-              </li>
-              {{-- Questionnaires --}}
-              <li class="menu-item {{ Route::is('questionnaires*') ? 'active' : '' }}">
-                <a href="{{ route('questionnaires.index') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bxs-book"></i>
-                  <div data-i18n="Analytics">Questionnaires</div>
-                </a>
-              </li>
             </ul>
           </aside>
           <!-- / Menu -->

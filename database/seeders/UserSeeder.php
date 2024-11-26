@@ -3,14 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $users = [
@@ -20,97 +17,100 @@ class UserSeeder extends Seeder
                 'role_id' => 1,
                 'password' => Hash::make('password'),
             ],
+            // Students
             [
-                'name' => 'student1',
-                'email' => 'student1@example.com',
+                'name' => 'Ahmad Rizki',
+                'email' => 'ahmad.rizki@example.com',
                 'role_id' => 2,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'student2',
-                'email' => 'student2@example.com',
+                'name' => 'Dewi Safitri',
+                'email' => 'dewi.safitri@example.com',
                 'role_id' => 2,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'student3',
-                'email' => 'student3@example.com',
+                'name' => 'Budi Santoso',
+                'email' => 'budi.santoso@example.com',
                 'role_id' => 2,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'student4',
-                'email' => 'student4@example.com',
+                'name' => 'Putri Rahayu',
+                'email' => 'putri.rahayu@example.com',
                 'role_id' => 2,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'student5',
-                'email' => 'student5@example.com',
+                'name' => 'Muhammad Fajar',
+                'email' => 'muh.fajar@example.com',
                 'role_id' => 2,
                 'password' => Hash::make('password'),
             ],
+            // Lecturers
             [
-                'name' => 'lecturer1',
-                'email' => 'lecturer1@example.com',
+                'name' => 'Dr. Slamet Widodo, M.Pd.',
+                'email' => 'slamet.widodo@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer2',
-                'email' => 'lecturer2@example.com',
+                'name' => 'Prof. Dr. Sri Mulyani, M.Sc.',
+                'email' => 'sri.mulyani@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer3',
-                'email' => 'lecturer3@example.com',
+                'name' => 'Dr. Bambang Supriyanto, M.T.',
+                'email' => 'bambang.supriyanto@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer4',
-                'email' => 'lecturer4@example.com',
+                'name' => 'Dr. Ratna Kusumawati, M.Si.',
+                'email' => 'ratna.kusuma@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer5',
-                'email' => 'lecturer5@example.com',
+                'name' => 'Dr. Agus Hermawan, M.Kom.',
+                'email' => 'agus.hermawan@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer6',
-                'email' => 'lecturer6@example.com',
+                'name' => 'Dr. Rina Wijayanti, M.Pd.',
+                'email' => 'rina.wijayanti@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer7',
-                'email' => 'lecturer7@example.com',
+                'name' => 'Dr. Hendra Gunawan, M.T.',
+                'email' => 'hendra.gunawan@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer8',
-                'email' => 'lecturer8@example.com',
+                'name' => 'Dr. Maya Indah Sari, M.Si.',
+                'email' => 'maya.indah@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer9',
-                'email' => 'lecturer9@example.com',
+                'name' => 'Dr. Eko Prasetyo, M.Kom.',
+                'email' => 'eko.prasetyo@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
             [
-                'name' => 'lecturer10',
-                'email' => 'lecturer10@example.com',
+                'name' => 'Dr. Nurul Hidayah, M.Pd.',
+                'email' => 'nurul.hidayah@example.com',
                 'role_id' => 3,
                 'password' => Hash::make('password'),
             ],
         ];
+
         User::insert($users);
     }
 }

@@ -12,6 +12,7 @@ class QuestionnaireResult extends Model
     protected $fillable = [
         'user_id',
         'student_id',
+        'learning_category_id'
     ];
 
     public function user()
@@ -27,5 +28,10 @@ class QuestionnaireResult extends Model
     public function questionnaireResultDetails()
     {
         return $this->hasMany(QuestionnaireResultDetail::class, 'result_id');
+    }
+
+    public function learningCategory()
+    {
+        return $this->belongsTo(LearningCategory::class);
     }
 }

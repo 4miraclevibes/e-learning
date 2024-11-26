@@ -6,12 +6,16 @@ use App\Models\CourseDetail;
 use App\Models\LearningCategory;
 use App\Models\Module;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ModuleController extends Controller
 {
     public function index(CourseDetail $courseDetail)
     {
-        $modules = $courseDetail->modules;
+        if(Auth::user()->lecturer){
+            $modules = $courseDetail->modules;
+        } else {
+            $modules = $courseDetail->modules->where('learning_category_id', Auth::user()->student->learningCategory->id);
+        }
         return view('pages.backend.courses.details.modules.index', compact('courseDetail', 'modules'));
     }
 
@@ -31,7 +35,8 @@ class ModuleController extends Controller
 
     public function edit(CourseDetail $courseDetail, Module $module)
     {
-        return view('pages.backend.courses.details.modules.edit', compact('courseDetail', 'module'));
+        $learningCategories = LearningCategory::all();
+        return view('pages.backend.courses.details.modules.edit', compact('courseDetail', 'module', 'learningCategories'));
     }
 
     public function update(Module $module, Request $request)
