@@ -26,6 +26,10 @@ class FacultySeeder extends Seeder
                 'name' => 'Faculty of Business',
                 'code' => 'FB',
             ],
+            [
+                'name' => 'Faculty of Humanities',
+                'code' => 'FH',
+            ],
         ];
         Faculty::insert($faculties);
     }
