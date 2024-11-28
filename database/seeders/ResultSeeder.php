@@ -16,11 +16,8 @@ class ResultSeeder extends Seeder
         $students = Student::with('user')->get();
         $questionnaires = Questionnairy::all();
 
-        for ($i = 0; $i < 50; $i++) {
-            $randomStudentId = rand(1, 5);
-            $student = Student::find($randomStudentId);
-
-            // Buat hasil utama
+        // Loop through setiap student secara berurutan
+        foreach ($students as $student) {
             $result = QuestionnaireResult::create([
                 'student_id' => $student->id,
                 'user_id' => $student->user->id,
